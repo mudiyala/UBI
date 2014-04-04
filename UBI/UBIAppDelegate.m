@@ -10,9 +10,18 @@
 
 @implementation UBIAppDelegate
 
+@synthesize appBaseURL,appLatitude,appLongitude;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    self.appBaseURL = @"http://muses.co.in/Releases/UBIApp/index.php/webservices/";
+    
+    self.appLatitude=@"0";
+    
+    self.appLongitude=@"0";
+    
     return YES;
 }
 							
