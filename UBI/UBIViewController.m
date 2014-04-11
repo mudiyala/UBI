@@ -35,6 +35,15 @@
     
     passwordTextField.font=[UIFont fontWithName:@"Roboto-Italic" size:15];
     
+    
+    emailTextField.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"textfield-left-email.png"]];
+    
+    emailTextField.leftViewMode = UITextFieldViewModeAlways;
+    
+    passwordTextField.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"textfield-left-key.png"]];
+    
+    passwordTextField.leftViewMode = UITextFieldViewModeAlways;
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -278,45 +287,21 @@
     
     [passwordTextField resignFirstResponder];
     
+    
     UBIAppDelegate *appDelegate = (UBIAppDelegate*)[[UIApplication sharedApplication] delegate];
     
     NSString *url = [NSString stringWithFormat:@"%@checkUserLogin",appDelegate.appBaseURL];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    /*
-    if (!self.faceBookID) {
-        
-        self.faceBookID=@"0";
-    }
-    appDelegate.appToken=@"0";
-    
-    self.faceBookID=@"0";
-    */
+   
+    [MBHUDView hudWithBody:@"Please wait..." type:MBAlertViewHUDTypeActivityIndicator hidesAfter:14.0 show:YES];
+
     NSDictionary *parameters = [NSDictionary new];
-    /*
-    if (self.faceBookUser == nil) {
-        parameters = @{@"email":userEmail.text,
-                       @"password":userPassword.text,
-                       @"latitude":latitude.text,
-                       @"longitude":longitude.text,
-                       @"companyID":@"11",
-                       @"userID":@"58"};
-    } else {*/
-        parameters = @{@"email":emailTextField.text,
+    
+    parameters = @{@"email":emailTextField.text,
                        @"password":passwordTextField.text
-                   //    @"latitude":latitude.text,
-                     //  @"longitude":longitude.text,
-                       //@"userID":@"58"
                        };
-    //}
-    
-  //  if (!appDelegate.isAutoLogin) {
-        
-    //    [MBHUDView hudWithBody:@"Please wait..." type:MBAlertViewHUDTypeActivityIndicator hidesAfter:14.0 show:YES];
-        
-    //}
-    
-    
+
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *responseArray  = (NSDictionary *)responseObject;
@@ -345,7 +330,6 @@
             
             [alert show];
             
-          //  [self showLoginView];
             return;
             
         }
@@ -366,11 +350,17 @@
             [sharedObj.users removeAllObjects];
 
             [sharedObj.users addObject:user];
+            
+            emailTextField.text=@"";
+            passwordTextField.text=@"";
+            
+            MallListViewController *nextController = [[self storyboard] instantiateViewControllerWithIdentifier:@"MallListViewController"];
+            
+            [self.navigationController pushViewController:nextController animated:NO];
 
         }
         
-
-/*
+        /*
         
         NSMutableDictionary *userDic  = [responseArray valueForKey:@"orderList"];
         
@@ -386,12 +376,8 @@
             }
         }
         
-    
-        
-        
-        
-        
         /*
+         
         NSString *name = [user.firstName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         
         if([name isEqual:@""] || [name length]==0){
@@ -449,12 +435,14 @@
         else{
             [self.navigationController pushViewController:hvc animated:TRUE];
         }
-        
         */
+        
+        
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         [MBHUDView dismissCurrentHUD];
-       // [self showLoginView];
+
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription]   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
         [alert show];
@@ -479,6 +467,7 @@
     NSString *currentLatitude = [[NSString alloc]
                                  initWithFormat:@"%g",
                                  newLocation.coordinate.latitude];
+   
     latitude.text = currentLatitude;
     
     NSString *currentLongitude = [[NSString alloc]
@@ -495,10 +484,13 @@
     
     [self.locationManager stopUpdatingLocation];
 }
+
 -(void)locationManager:(CLLocationManager *)manager
       didFailWithError:(NSError *)error
 {
+   
     NSLog(@"Error : %@",error.localizedFailureReason);
+
 }
 
 @end

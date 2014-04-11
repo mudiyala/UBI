@@ -18,6 +18,8 @@
 @property (strong, nonatomic) NSString *userPass;
 @property (strong, nonatomic) NSString *userImage;
 @property (strong, nonatomic) NSString *userThumbImage;
+@property (strong, nonatomic) NSString *userAddress;
+@property (strong, nonatomic) NSString *userContactNumber;
 
 
 @end

@@ -8,6 +8,29 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Mall : NSObject
+@interface Mall : NSObject {
+
+    NSString *mallName;
+    
+    NSString *numOfStores;
+    
+    NSString *image;
+
+    NSString *thumb;
+    
+    NSString *mallid;
+
+
+}
+
+@property(nonatomic, retain)    NSString *mallName;
+
+@property(nonatomic, retain)    NSString *numOfStores;
+
+@property(nonatomic, retain)    NSString *image;
+
+@property(nonatomic, retain)    NSString *thumb;
+
+@property(nonatomic, retain)    NSString *mallid;
 
 @end

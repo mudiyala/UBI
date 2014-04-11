@@ -10,4 +10,12 @@
 
 @implementation Mall
 
+@synthesize mallName,numOfStores,image,thumb,mallid;
+
+-init{
+
+    return self;
+
+}
+
 @end

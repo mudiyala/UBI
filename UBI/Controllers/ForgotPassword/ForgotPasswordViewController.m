@@ -39,7 +39,7 @@
     self.navigationItem.title = @"Forgot Password";
     
     
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_back"] style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonPressed)];
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_btn.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonPressed)];
     
     self.navigationItem.leftBarButtonItem = barButton;
     
@@ -48,6 +48,9 @@
     
     emailTextField.font=[UIFont fontWithName:@"Roboto-Italic" size:15];
     
+    emailTextField.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"textfield-left-email.png"]];
+    
+    emailTextField.leftViewMode = UITextFieldViewModeAlways;
     
 }
 

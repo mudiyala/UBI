@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UBIAppDelegate.h"
 #import <CoreLocation/CoreLocation.h>
+#import "MallListViewController.h"
 
 @interface UBIViewController : UIViewController<CLLocationManagerDelegate>{
 

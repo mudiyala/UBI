@@ -40,7 +40,7 @@
     self.navigationItem.title = @"Register";
     
     
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_back"] style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonPressed)];
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_btn.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonPressed)];
     
     self.navigationItem.leftBarButtonItem = barButton;
     
@@ -48,6 +48,22 @@
     passwordTextField.textColor = [UIColor blackColor];
     contactNumberTextField.textColor = [UIColor blackColor];
     userNameTextField.textColor = [UIColor blackColor];
+    
+    emailTextField.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"textfield-left-email.png"]];
+    
+    emailTextField.leftViewMode = UITextFieldViewModeAlways;
+    
+    passwordTextField.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"textfield-left-key.png"]];
+    
+    passwordTextField.leftViewMode = UITextFieldViewModeAlways;
+    
+    userNameTextField.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"textfield-left-user.png"]];
+    
+    userNameTextField.leftViewMode = UITextFieldViewModeAlways;
+    
+    contactNumberTextField.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"textfield-left-call.png"]];
+    
+    contactNumberTextField.leftViewMode = UITextFieldViewModeAlways;
     
     
     emailTextField.font=[UIFont fontWithName:@"Roboto-Italic" size:15];

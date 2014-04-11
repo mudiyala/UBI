@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Mall.h"
 
-@interface MallViewController : UIViewController{
+@interface MallViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate>{
 
-
-
+    UITableView *mallTable;
+    NSMutableArray *mallListArray;
 
 }
+
+@property(nonatomic, retain) IBOutlet UITableView *mallTable;
+@property(nonatomic, retain) IBOutlet NSMutableArray *mallListArray;
 
 @end
